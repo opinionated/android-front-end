@@ -1,0 +1,45 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.opinionated.opinionated.main_page">
+    <item
+        android:id="@+id/All"
+        android:orderInCategory="100"
+        android:title="@string/All"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/News"
+        android:orderInCategory="100"
+        android:title="@string/News"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Politics"
+        android:orderInCategory="100"
+        android:title="@string/Politics"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Sports"
+        android:orderInCategory="100"
+        android:title="@string/Sports"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Entertainment"
+        android:orderInCategory="100"
+        android:title="@string/Entertainment"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Opinion"
+        android:orderInCategory="100"
+        android:title="@string/Opinion"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Business"
+        android:orderInCategory="100"
+        android:title="@string/Business"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Technology"
+        android:orderInCategory="100"
+        android:title="@string/Technology"
+        app:showAsAction="never" />
+</menu>
