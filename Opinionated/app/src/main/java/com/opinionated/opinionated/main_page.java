@@ -1,5 +1,6 @@
 package com.opinionated.opinionated;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class main_page extends AppCompatActivity {
 
@@ -17,6 +19,7 @@ public class main_page extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("");
 
     }
 
@@ -35,7 +38,47 @@ public class main_page extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.All) {
+            return true;
+        }
+
+        else if (id==R.id.Business)
+        {
+            return true;
+        }
+
+        else if (id==R.id.Entertainment)
+        {
+            return true;
+        }
+
+        else if (id==R.id.News)
+        {
+            return true;
+        }
+
+        else if (id==R.id.Politics)
+        {
+            return true;
+        }
+
+        else if (id==R.id.Technology)
+        {
+            return true;
+        }
+
+        else if (id==R.id.Entertainment)
+        {
+            return true;
+        }
+
+        else if (id==R.id.Sports)
+        {
+            return true;
+        }
+
+        else if (id==R.id.Opinion)
+        {
             return true;
         }
         return super.onOptionsItemSelected(item);
