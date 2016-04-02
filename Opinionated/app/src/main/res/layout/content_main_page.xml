@@ -13,4 +13,11 @@
     tools:context="com.opinionated.opinionated.main_page"
     tools:showIn="@layout/activity_main_page">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_lin_layout"
+        android:orientation="vertical">
+    </LinearLayout>
+
 </ScrollView>

@@ -3,6 +3,7 @@ package com.opinionated.opinionated;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -75,7 +76,7 @@ public class main_page extends AppCompatActivity {
         ScrollView scrollView = (ScrollView) findViewById(R.id.main_scroll_view);
 
         // Create a LinearLayout element
-        LinearLayout linearLayout = new LinearLayout(this);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.main_lin_layout);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         try {
@@ -89,7 +90,7 @@ public class main_page extends AppCompatActivity {
 
                 //Get the title and create+add a button
                 String title=article.getString("title");
-                Button button = new Button(this);
+                Button button = (Button)(this.getLayoutInflater().inflate(R.layout.button, null));
                 button.setText(title);
                 linearLayout.addView(button);
 
@@ -106,7 +107,7 @@ public class main_page extends AppCompatActivity {
         }
 
 // Add the LinearLayout element to the ScrollView
-        scrollView.addView(linearLayout);
+        //scrollView.addView(linearLayout);
 
     }
 
