@@ -88,18 +88,23 @@ public class main_page extends AppCompatActivity {
                 //Load article as JSONObject
                 JSONObject article = jarray.getJSONObject(c);
 
+                //create a linearlayout for the article
+                LinearLayout art_layout = (LinearLayout)(this.getLayoutInflater().inflate(R.layout.article_layout, null));
                 //Get the title and create+add a button
                 String title=article.getString("title");
                 Button button = (Button)(this.getLayoutInflater().inflate(R.layout.button, null));
                 button.setText(title);
-                linearLayout.addView(button);
+                art_layout.addView(button);
+
 
                 //Load an image from it's URL and place below the button just instantiated
 
                 ImageView image = (ImageView) new ImageView(this);
                 String url_string=article.getString("image");
-                Picasso.with(this).load(url_string).into(image);
-                linearLayout.addView(image);
+                Picasso.with(this).load(url_string).resize(800,300).centerCrop().into(image);
+                art_layout.addView(image);
+
+                linearLayout.addView(art_layout);
             }
 
         } catch (JSONException e) {
