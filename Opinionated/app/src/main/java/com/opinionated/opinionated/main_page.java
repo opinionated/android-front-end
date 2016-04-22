@@ -1,6 +1,7 @@
 package com.opinionated.opinionated;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -41,6 +42,7 @@ import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import com.squareup.picasso.Picasso;
 
+
 public class main_page extends AppCompatActivity {
 
     String tag = "all";
@@ -67,6 +69,12 @@ public class main_page extends AppCompatActivity {
 
         return json;
     }
+/*
+    public void launch_article(View v)
+    {
+        Intent intent = new Intent(getApplicationContext(), ArticleViewer.class);
+        startActivity(intent);
+    }*/
 
     //function to build the linear_layout inside the scrollview
     public void load_linear_layout(String tag)
@@ -91,12 +99,22 @@ public class main_page extends AppCompatActivity {
                     if (curr_tag.equals(tag) || tag.equals("all"))
                     {
                         //create a linearlayout for the article
-                        LinearLayout art_layout = (LinearLayout)(this.getLayoutInflater().inflate(R.layout.article_layout, null));
+                        final LinearLayout art_layout = (LinearLayout)(this.getLayoutInflater().inflate(R.layout.article_layout, null));
                         //Get the title and create+add a button
                         String title=article.getString("title");
                         Button button = (Button)(this.getLayoutInflater().inflate(R.layout.button, null));
                         button.setText(title);
                         art_layout.addView(button);
+
+                        //set the on click listener to launch the article viewer activity
+                        button.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View view) {
+                                Intent myIntent = new Intent(view.getContext(), ArticleViewer.class);
+                                TextView art_viewer=(TextView) findViewById(R.id.article_textview);
+                                startActivityForResult(myIntent, 0);
+                            }
+
+                        });
 
 
                         //get the size of the display to make the image fit the display
