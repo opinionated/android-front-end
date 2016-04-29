@@ -46,7 +46,6 @@ import com.squareup.picasso.Picasso;
 public class main_page extends AppCompatActivity {
 
     String tag = "all";
-
     //function to read JSON from assets folder
     public String loadJSONFromAsset() {
         String json = null;
@@ -69,12 +68,6 @@ public class main_page extends AppCompatActivity {
 
         return json;
     }
-/*
-    public void launch_article(View v)
-    {
-        Intent intent = new Intent(getApplicationContext(), ArticleViewer.class);
-        startActivity(intent);
-    }*/
 
     //function to build the linear_layout inside the scrollview
     public void load_linear_layout(String tag)
@@ -83,7 +76,8 @@ public class main_page extends AppCompatActivity {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.main_lin_layout);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         try {
-            JSONObject main_obj = new JSONObject(loadJSONFromAsset());
+            final String jsonstring = loadJSONFromAsset();
+            JSONObject main_obj = new JSONObject(jsonstring);
             JSONArray jarray= main_obj.getJSONArray("article");
             for (int c=0; c<jarray.length(); c+=1)
             {
@@ -104,14 +98,16 @@ public class main_page extends AppCompatActivity {
                         String title=article.getString("title");
                         Button button = (Button)(this.getLayoutInflater().inflate(R.layout.button, null));
                         button.setText(title);
+                        button.setId(c);
                         art_layout.addView(button);
 
                         //set the on click listener to launch the article viewer activity
                         button.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View view) {
-                                Intent myIntent = new Intent(view.getContext(), ArticleViewer.class);
-                                TextView art_viewer=(TextView) findViewById(R.id.article_textview);
-                                startActivityForResult(myIntent, 0);
+                                Intent intent = new Intent(view.getContext(), ArticleViewer.class);
+                                intent.putExtra("JSON", jsonstring);
+                                intent.putExtra("ID", view.getId());
+                                startActivityForResult(intent, 0);
                             }
 
                         });

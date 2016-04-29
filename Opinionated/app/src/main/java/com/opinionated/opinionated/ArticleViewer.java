@@ -6,8 +6,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ArticleViewer extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +25,36 @@ public class ArticleViewer extends AppCompatActivity {
         setContentView(R.layout.article_scrollview);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        LinearLayout main_layout= (LinearLayout) findViewById(R.id.articleviewer_linearlayout);
+
+        //get the json string and the id of the pressed button
+        String jsonstring = getIntent().getStringExtra("JSON");
+        int art_id=getIntent().getIntExtra("ID", 0);
+
+       // LinearLayout linlayout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.articleviewer_linlayout, null);
+
+        try {
+            //load the jsonarray of articles and find the correct article
+            JSONObject main_obj = new JSONObject(jsonstring);
+            JSONArray jarray= main_obj.getJSONArray("article");
+            JSONObject article = jarray.getJSONObject(art_id);
+
+            TextView article_text = new TextView(this);
+            String title=article.getString("title");
+            String body = article.getString("body");
+            String entire_article=title + "\n\n" +body;
+            article_text.setText(entire_article);
+            main_layout.addView(article_text);
+
+        }
+
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
