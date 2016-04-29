@@ -11,6 +11,7 @@ To run just download the code and run on android API 16 or later.
 - <s>open up json file</S>
 - <s>read json file and create buttons</s>
 - <s>create article view layout/activity</s>
-- link buttons to build article view layout
+- <s>link buttons to build article view layout</s>
+- prettify the article viewer activity and add imageview
 - create similar articles layout/activity
 - create buttons and get them to launch articles on similar articles activity
