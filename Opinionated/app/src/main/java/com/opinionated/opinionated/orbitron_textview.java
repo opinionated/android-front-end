@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 /**
  * Created by matthew on 3/22/16.
+ * this class enables use of the orbitron font stored in the assets folder
+ * this is the main font of Opinionated
  */
 public class orbitron_textview extends TextView
 {
