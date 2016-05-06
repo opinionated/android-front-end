@@ -15,3 +15,22 @@ To run just download the code and run on android API 16 or later.
 - prettify the article viewer activity and add imageview
 - create similar articles layout/activity
 - create buttons and get them to launch articles on similar articles activity
+
+###Lets take a tour!
+
+####Below is the landing page of the app, this is where articles are initially displayed with a button containing the title as well as an image preview of the article. It's quite visually stunning if I say so myself,I mean, who isn't in love with that orbitron font up top???
+
+![main_page](http://i.imgur.com/AnQTD5l.png)
+
+####This photograph shows the drop down menu for sorting articles, selecting one of the tags will reload the main_page, but only display articles that match the selected tag!
+
+![tag_sort](http://i.imgur.com/SIcccJq.png)
+
+####This is the article viewer page, it's a scrollview that displays the articles title and body. In the future this will include an expandable image as well as more article information such as the time the article was written as well as the author. 
+
+![article_viewer](http://i.imgur.com/AR4JTXc.png)
+
+####In the future there will also be a similar articles activity stemming from the article viewer activity This activity will allow users to filter articles by articles similar to the article they just read rather than simply by the articles tag
+
+
+##Thanks for taking the time to read!
