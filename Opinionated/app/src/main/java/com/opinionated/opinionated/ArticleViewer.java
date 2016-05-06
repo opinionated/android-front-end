@@ -8,17 +8,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 
 public class ArticleViewer extends AppCompatActivity {
 
-
+    //REQUIRES: savedInstanceState != null
+    //EFFECTS: inflates the new view
+    //MODIFIES: none
+    //RETURNS: none
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,6 @@ public class ArticleViewer extends AppCompatActivity {
         String jsonstring = getIntent().getStringExtra("JSON");
         int art_id=getIntent().getIntExtra("ID", 0);
 
-       // LinearLayout linlayout = (LinearLayout) this.getLayoutInflater().inflate(R.layout.articleviewer_linlayout, null);
 
         try {
             //load the jsonarray of articles and find the correct article
@@ -39,6 +38,9 @@ public class ArticleViewer extends AppCompatActivity {
             JSONArray jarray= main_obj.getJSONArray("article");
             JSONObject article = jarray.getJSONObject(art_id);
 
+
+            //create a new textview and put the article title and
+            //article body into the textview, then put the textview into a scrollview
             TextView article_text = new TextView(this);
             String title=article.getString("title");
             String body = article.getString("body");
