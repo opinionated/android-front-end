@@ -1,9 +1,9 @@
 # android-front-end
 The Android front end!
 
-Written using Android Studio. This app is not a working version of the app.
-The JSON file of articles is currently saved locally in the assets folder.
-To run just download the code and run on android API 16 or later.
+Written using Android Studio. The app is not yet fully functional, although the basic functions are in place.
+The JSON file of articles is currently saved locally in the assets folder rather than being stored on a server as the backend is not entirely implemented yet. Future development goals are listed below. 
+To run just download the code and emulate with android API 16 or later.
 
 ###Development Goals
 - <s>layout front page</s>
