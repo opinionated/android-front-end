@@ -15,6 +15,8 @@ To run just download the code and emulate with android API 16 or later.
 - prettify the article viewer activity and add imageview
 - create similar articles layout/activity
 - create buttons and get them to launch articles on similar articles activity
+- link the app to  the server rather than pulling json from local asseets
+- FINISH APP AND RELEASE TO ANDROID STORE
 
 ###Lets take a tour!
 
