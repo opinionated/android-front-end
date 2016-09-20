@@ -117,9 +117,23 @@ public class main_page extends AppCompatActivity {
                         //Load an image from it's URL and place below the button just instantiated
                         ImageView image = (ImageView) new ImageView(this);
                         String url_string=article.getString("image");
+                        image.setId(c);
                         //resize the image to be a proportion of the screen
                         Picasso.with(this).load(url_string).resize(width,height/4).centerCrop().into(image);
                         art_layout.addView(image);
+
+                        //set the on click listener to launch the article viewer activity
+                        //the JSON string is passed via the intent to the new activity
+                        //as well as the ID of the button so you can tell which button was pressed
+                        image.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View view) {
+                                Intent intent = new Intent(view.getContext(), ArticleViewer.class);
+                                intent.putExtra("JSON", jsonstring);
+                                intent.putExtra("ID", view.getId());
+                                startActivityForResult(intent, 0);
+                            }
+
+                        });
 
                         //add the current article to the button and image to the linearlayout that is hosted inside a scrollview
                         linearLayout.addView(art_layout);
