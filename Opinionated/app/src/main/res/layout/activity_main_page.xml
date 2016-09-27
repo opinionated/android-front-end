@@ -5,23 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.opinionated.opinionated.main_page">
+    tools:context="com.opinionated.opinionated.main_page"
+    android:textAlignment="center">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:textAlignment="center"
+        >
 
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorPrimary"
+                android:textAlignment="center"
+                android:layout_gravity="right"
+                >
 
                 <com.opinionated.opinionated.orbitron_textview
                     android:layout_width="wrap_content"
@@ -29,7 +35,8 @@
                     android:text="Opinionated"
                     android:textSize="30sp"
                     android:layout_gravity="left"
-                    android:id="@+id/toolbar_title"/>
+                    android:id="@+id/toolbar_title"
+                    android:textAlignment="center" />
 
             </android.support.v7.widget.Toolbar>
 
