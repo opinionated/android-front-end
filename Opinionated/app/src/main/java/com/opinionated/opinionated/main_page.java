@@ -20,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.squareup.picasso.Picasso;
 
-
 public class main_page extends AppCompatActivity {
 
     String tag = "all";
@@ -29,7 +28,6 @@ public class main_page extends AppCompatActivity {
         String json = null;
         try
         {
-
             InputStream is = getAssets().open("exArt1.json");
             int size = is.available();
             byte[] buffer = new byte[size];
@@ -69,7 +67,6 @@ public class main_page extends AppCompatActivity {
             JSONArray jarray= main_obj.getJSONArray("article");
             for (int c=0; c<jarray.length(); c+=1)
             {
-
                 //Load the current article as JSONObject
                 JSONObject article = jarray.getJSONObject(c);
                 String curr_tag="";
@@ -105,14 +102,12 @@ public class main_page extends AppCompatActivity {
 
                         });
 
-
                         //get the size of the display to make the image fit the display
                         Display display = getWindowManager().getDefaultDisplay();
                         Point size = new Point();
                         display.getSize(size);
                         int width = size.x;
                         int height=size.y;
-
 
                         //Load an image from it's URL and place below the button just instantiated
                         ImageView image = (ImageView) new ImageView(this);
@@ -163,7 +158,6 @@ public class main_page extends AppCompatActivity {
         // Find the ScrollView
         ScrollView scrollView = (ScrollView) findViewById(R.id.main_scroll_view);
         load_linear_layout("all");
-
     }
 
 

@@ -15,7 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 public class ArticleViewer extends AppCompatActivity {
 
     //REQUIRES: savedInstanceState != null
@@ -34,13 +33,11 @@ public class ArticleViewer extends AppCompatActivity {
         String jsonstring = getIntent().getStringExtra("JSON");
         int art_id=getIntent().getIntExtra("ID", 0);
 
-
         try {
             //load the jsonarray of articles and find the correct article
             JSONObject main_obj = new JSONObject(jsonstring);
             JSONArray jarray= main_obj.getJSONArray("article");
             JSONObject article = jarray.getJSONObject(art_id);
-
 
             //create a new textview and put the article title and
             //article body into the textview, then put the textview into a scrollview
@@ -50,16 +47,10 @@ public class ArticleViewer extends AppCompatActivity {
             String entire_article=title + "\n\n" +body;
             article_text.setText(entire_article);
             main_layout.addView(article_text);
-
         }
-
         catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
