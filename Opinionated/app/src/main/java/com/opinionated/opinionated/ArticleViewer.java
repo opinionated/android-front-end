@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import java.lang.Double;
 
 import com.squareup.picasso.Picasso;
 
@@ -80,11 +81,15 @@ public class ArticleViewer extends AppCompatActivity {
             ImageView art_img = new ImageView(this);
             Picasso.with(this).load(img_url).resize(width-60,height/4).centerCrop().into(art_img);
 
-            //add text to the TextViews and set the font color to black
+            //add text to the TextViews and set the font color to black and sets the font size of the two textviews
+            int font_size = 16;
+            Double title_size = (font_size*1.2);
             article_text1.setText(top_text);
             article_text1.setTextColor(Color.parseColor("#000000"));
+            article_text1.setTextSize(title_size.intValue());
             article_text2.setText(bottom_text);
             article_text2.setTextColor(Color.parseColor("#000000"));
+            article_text2.setTextSize(font_size);
 
             //Add the first TextView, then the ImageView, then finally the second TextView
             main_layout.addView(article_text1);
