@@ -73,13 +73,19 @@ public class ArticleViewer extends AppCompatActivity {
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
-            int width = size.x;
+            int swidth = size.x;
             int height=size.y;
 
-            //adds the image to the screen
+            //adds the image to the screen with a border around it
             String img_url = article.getString("image");
             ImageView art_img = new ImageView(this);
-            Picasso.with(this).load(img_url).resize(width-60,height/4).centerCrop().into(art_img);
+            LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(swidth-60, height/4);
+            layout_params.gravity = Gravity.CENTER;
+            art_img.setLayoutParams(layout_params);
+            art_img.setBackgroundColor(Color.BLACK);
+            art_img.setPadding(6,6,6,6);
+            Picasso.with(this).load(img_url).resize(swidth-60,height/4).centerCrop().into(art_img);
+
 
             //add text to the TextViews and set the font color to black and sets the font size of the two textviews
             int font_size = 16;
