@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.widget.LinearLayout.LayoutParams;
 
 public class ArticleViewer extends AppCompatActivity {
 
@@ -44,6 +45,11 @@ public class ArticleViewer extends AppCompatActivity {
             //article body into the textview, then put the textview into a scrollview
             TextView article_text = new TextView(this);
             article_text.setTextColor(Color.parseColor("#000000"));
+            article_text.setEms(20);
+            article_text.setGravity(Gravity.CENTER_VERTICAL);
+            LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            llp.setMargins(30, 0, 0, 0);
+            article_text.setLayoutParams(llp);
             String title=article.getString("title");
             String body = article.getString("body");
             String entire_article=title + "\n\n" +body;
