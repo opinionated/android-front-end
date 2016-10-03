@@ -1,5 +1,6 @@
 package com.opinionated.opinionated;
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -42,6 +43,7 @@ public class ArticleViewer extends AppCompatActivity {
             //create a new textview and put the article title and
             //article body into the textview, then put the textview into a scrollview
             TextView article_text = new TextView(this);
+            article_text.setTextColor(Color.parseColor("#000000"));
             String title=article.getString("title");
             String body = article.getString("body");
             String entire_article=title + "\n\n" +body;

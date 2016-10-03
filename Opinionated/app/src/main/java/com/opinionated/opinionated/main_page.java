@@ -261,5 +261,4 @@ public class main_page extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
