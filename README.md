@@ -5,6 +5,9 @@ Written using Android Studio. The app is not yet fully functional, although the 
 The JSON file of articles is currently saved locally in the assets folder rather than being stored on a server as the backend is not entirely implemented yet. Future development goals are listed below.
 To run just download the code and emulate with android API 16 or later.
 
+###Here is a Wire-Frame of the app design
+![wire-frame](http://i.imgur.com/2E6PX0F.png)
+
 ###Development Goals
 - <s>layout front page</s>
 - <s>stylize app with custom fonts and colors</s>
