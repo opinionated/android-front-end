@@ -2,7 +2,7 @@
 The Android front end!
 
 Written using Android Studio. The app is not yet fully functional, although the basic functions are in place.
-The JSON file of articles is currently saved locally in the assets folder rather than being stored on a server as the backend is not entirely implemented yet. Future development goals are listed below. 
+The JSON file of articles is currently saved locally in the assets folder rather than being stored on a server as the backend is not entirely implemented yet. Future development goals are listed below.
 To run just download the code and emulate with android API 16 or later.
 
 ###Development Goals
@@ -28,11 +28,10 @@ To run just download the code and emulate with android API 16 or later.
 
 ![tag_sort](http://i.imgur.com/SIcccJq.png)
 
-####This is the article viewer page, it's a scrollview that displays the articles title and body. In the future this will include an expandable image as well as more article information such as the time the article was written as well as the author. 
+####This is the article viewer page, it's a scrollview that displays the articles title and body. In the future this will include an expandable image as well as more article information such as the time the article was written as well as the author.
 
 ![article_viewer](http://i.imgur.com/AR4JTXc.png)
 
 ####In the future there will also be a similar articles activity stemming from the article viewer activity This activity will allow users to filter articles by articles similar to the article they just read rather than simply by the articles tag
-
 
 ##Thanks for taking the time to read!
