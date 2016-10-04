@@ -13,8 +13,6 @@
 
     <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/filter</item>
-        <item name="android:background">?android:attr/actionBarItemBackground</item>
-        <item name="android:contentDescription">"Filter articles by category"</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
