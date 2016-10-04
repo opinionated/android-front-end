@@ -14,19 +14,19 @@
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
+        android:gravity="bottom"
         android:textAlignment="center"
         >
 
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:layout_gravity="center"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:background="@color/colorPrimary"
-                android:textAlignment="center"
-                android:layout_gravity="right"
                 >
 
                 <com.opinionated.opinionated.orbitron_textview
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="Opinionated"
                     android:textSize="30sp"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center"
                     android:id="@+id/toolbar_title"
                     android:textAlignment="center" />
 

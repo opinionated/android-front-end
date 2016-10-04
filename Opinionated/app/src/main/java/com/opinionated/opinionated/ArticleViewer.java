@@ -2,6 +2,7 @@ package com.opinionated.opinionated;
 
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -53,11 +54,10 @@ public class ArticleViewer extends AppCompatActivity {
             article_text1.setEms(20);
             article_text1.setGravity(Gravity.CENTER_VERTICAL);
             LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            llp.setMargins(30, 0, 0, 0);
+            llp.setMargins(30, 0, 30, 0);
             article_text1.setLayoutParams(llp);
             //Create a second TextView to go below the ImageView
             TextView article_text2 = new TextView(this);
-            article_text2.setEms(20);
             article_text2.setGravity(Gravity.CENTER_VERTICAL);
             article_text2.setLayoutParams(llp);
 
@@ -73,18 +73,18 @@ public class ArticleViewer extends AppCompatActivity {
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
-            int swidth = size.x;
+            int width = size.x;
             int height=size.y;
 
             //adds the image to the screen with a border around it
             String img_url = article.getString("image");
             ImageView art_img = new ImageView(this);
-            LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(swidth-60, height/4);
+            LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(width-60, height/3);
             layout_params.gravity = Gravity.CENTER;
             art_img.setLayoutParams(layout_params);
-            art_img.setBackgroundColor(Color.BLACK);
+            art_img.setBackgroundColor(Color.parseColor("#3D4547"));
             art_img.setPadding(6,6,6,6);
-            Picasso.with(this).load(img_url).resize(swidth-60,height/4).centerCrop().into(art_img);
+            Picasso.with(this).load(img_url).resize(width-60,height/3).centerCrop().into(art_img);
 
 
             //add text to the TextViews and set the font color to black and sets the font size of the two textviews

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.LinearLayout;
 import android.widget.Button;
 import java.io.IOException;
@@ -154,9 +153,6 @@ public class main_page extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("");
-
-        // Find the ScrollView
-        ScrollView scrollView = (ScrollView) findViewById(R.id.main_scroll_view);
         load_linear_layout("all");
     }
 
