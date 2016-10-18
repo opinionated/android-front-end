@@ -24,6 +24,8 @@ public class main_page extends AppCompatActivity {
 
     String tag = "all";
     //function to read JSON from assets folder
+    //This function is from a stackoverflow post found at this link "http://stackoverflow.com/questions/19945411/android-java-how-can-i-parse-a-local-json-file-from-assets-folder-into-a-listvi"
+    //Function written by stackoverflow user "GrIsHu", use in accordance with Creative Commons License CC BY-SA 3.0
     public String loadJSONFromAsset() {
         String json = null;
         try
