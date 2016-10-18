@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_scroll_view"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorAccent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.opinionated.opinionated.main_page"
     tools:showIn="@layout/activity_main_page">

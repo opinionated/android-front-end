@@ -1,6 +1,7 @@
 package com.opinionated.opinionated;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -93,7 +94,7 @@ public class main_page extends AppCompatActivity {
                         //as well as the ID of the button so you can tell which button was pressed
                         button.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View view) {
-                                Intent intent = new Intent(view.getContext()q, ArticleViewer.class);
+                                Intent intent = new Intent(view.getContext(), ArticleViewer.class);
                                 intent.putExtra("JSON", jsonstring);
                                 intent.putExtra("ID", view.getId());
                                 startActivityForResult(intent, 0);
@@ -112,6 +113,7 @@ public class main_page extends AppCompatActivity {
                         ImageView image = (ImageView) new ImageView(this);
                         String url_string=article.getString("image");
                         image.setId(c);
+                        image.setBackgroundColor(Color.parseColor("#3D4547"));
                         //resize the image to be a proportion of the screen
                         Picasso.with(this).load(url_string).resize(width,height/4).centerCrop().into(image);
                         art_layout.addView(image);
