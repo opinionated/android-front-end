@@ -43,14 +43,11 @@ public class ArticleViewer extends AppCompatActivity {
 
             //TextView to put text that goes above the ImageView in
             TextView article_text1 = new TextView(this);
-            article_text1.setEms(20);
-            article_text1.setGravity(Gravity.CENTER_VERTICAL);
             LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             llp.setMargins(30, 0, 30, 0);
             article_text1.setLayoutParams(llp);
             //Create a second TextView to go below the ImageView
             TextView article_text2 = new TextView(this);
-            article_text2.setGravity(Gravity.CENTER_VERTICAL);
             article_text2.setLayoutParams(llp);
 
             //Constructs the strings to display the article information
@@ -79,14 +76,14 @@ public class ArticleViewer extends AppCompatActivity {
             Picasso.with(this).load(img_url).resize(width-60,height/3).centerCrop().into(art_img);
 
 
-            //add text to the TextViews and set the font color to black and sets the font size of the two textviews
+            //add text to the TextViews and set the font color to off-black and sets the font size of the two textviews
             int font_size = 16;
             Double title_size = (font_size*1.2);
             article_text1.setText(top_text);
-            article_text1.setTextColor(Color.parseColor("#000000"));
+            article_text1.setTextColor(Color.parseColor("#3d3d3d"));
             article_text1.setTextSize(title_size.intValue());
             article_text2.setText(bottom_text);
-            article_text2.setTextColor(Color.parseColor("#000000"));
+            article_text2.setTextColor(Color.parseColor("#3d3d3d"));
             article_text2.setTextSize(font_size);
 
             //Add the first TextView, then the ImageView, then finally the second TextView

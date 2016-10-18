@@ -68,7 +68,7 @@ public class main_page extends AppCompatActivity {
             {
                 //Load the current article as JSONObject
                 JSONObject article = jarray.getJSONObject(c);
-                String curr_tag="";
+                String curr_tag;
 
                 //This is where the sorting is applied
                 JSONArray art_tags=article.getJSONArray("tag");
@@ -93,7 +93,7 @@ public class main_page extends AppCompatActivity {
                         //as well as the ID of the button so you can tell which button was pressed
                         button.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View view) {
-                                Intent intent = new Intent(view.getContext(), ArticleViewer.class);
+                                Intent intent = new Intent(view.getContext()q, ArticleViewer.class);
                                 intent.putExtra("JSON", jsonstring);
                                 intent.putExtra("ID", view.getId());
                                 startActivityForResult(intent, 0);
