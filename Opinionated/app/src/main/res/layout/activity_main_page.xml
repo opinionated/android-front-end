@@ -9,44 +9,30 @@
     android:textAlignment="center">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:gravity="bottom"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/app_bar_height"
-                android:background="@color/colorPrimary"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                >
+            <com.opinionated.opinionated.orbitron_textview
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F5F5F5"
+                android:text="@string/app_name"
+                android:textSize="30sp" />
 
-                <com.opinionated.opinionated.orbitron_textview
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Opinionated"
-                    android:textSize="30sp"
-                    android:id="@+id/toolbar_title"
-                    android:textAlignment="center"
-                    android:layout_gravity="top" />
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
 
     <include layout="@layout/content_main_page" />
 

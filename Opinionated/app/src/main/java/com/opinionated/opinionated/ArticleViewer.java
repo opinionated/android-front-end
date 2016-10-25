@@ -28,6 +28,7 @@ public class ArticleViewer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_scrollview);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setTitle("");
         setSupportActionBar(toolbar);
         LinearLayout main_layout= (LinearLayout) findViewById(R.id.articleviewer_linearlayout);
 
