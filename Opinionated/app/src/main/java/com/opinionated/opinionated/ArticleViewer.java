@@ -1,7 +1,10 @@
 package com.opinionated.opinionated;
 
+import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -50,22 +54,16 @@ public class ArticleViewer extends AppCompatActivity {
         setTitle("");
         main_layout = (LinearLayout) findViewById(R.id.articleviewer_linearlayout);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //drawer_list = (ListView) findViewById(R.id.similar_art_list);
+        LinearLayout drawer_list = (LinearLayout) findViewById(R.id.similar_art_list);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.app_name, R.string.app_name) {
 
-            /**
-             * Called when a drawer has settled in a completely closed state.
-             */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
-            /**
-             * Called when a drawer has settled in a completely open state.
-             */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
@@ -76,7 +74,7 @@ public class ArticleViewer extends AppCompatActivity {
 
 
         //get the json string and the id of the pressed button
-        String jsonstring = getIntent().getStringExtra("JSON");
+        final String jsonstring = getIntent().getStringExtra("JSON");
         int art_id = getIntent().getIntExtra("ID", 0);
 
         try {
@@ -84,6 +82,7 @@ public class ArticleViewer extends AppCompatActivity {
             JSONObject main_obj = new JSONObject(jsonstring);
             JSONArray jarray = main_obj.getJSONArray("article");
             JSONObject article = jarray.getJSONObject(art_id);
+            JSONArray similar = article.getJSONArray("similarArticles");
 
             //TextView to put text that goes above the ImageView in
             TextView article_text1 = new TextView(this);
@@ -134,6 +133,73 @@ public class ArticleViewer extends AppCompatActivity {
             main_layout.addView(article_text1);
             main_layout.addView(art_img);
             main_layout.addView(article_text2);
+
+            TextView t = new TextView(this);
+            Typeface orb = Typeface.createFromAsset(getAssets(), "fonts/Orbitron-Medium.ttf");
+            t.setTypeface(orb);
+            t.setText("Similar Articles");
+            //loads the similar articles into the nav drawer
+            drawer_list.addView(t);
+
+            for (int g=0; g<similar.length(); g++)
+            {
+                String curr_art = similar.getString(g);
+                for (int i=0; i<jarray.length(); i++)
+                {
+                    JSONObject item = jarray.getJSONObject(i);
+                    String curr_file = item.getString("file");
+                    if (curr_file.equals(curr_art))
+                    {
+                        //create a linearlayout for the article
+                        final LinearLayout art_layout = (LinearLayout)(this.getLayoutInflater().inflate(R.layout.article_layout, null));
+                        //Get the title and create+add a button
+                        String art_title = item.getString("title");
+                        Button button = (Button)(this.getLayoutInflater().inflate(R.layout.button, null));
+                        button.setText(art_title);
+                        button.setId(i);
+                        drawer_list.addView(button);
+
+                        //set the on click listener to launch the article viewer activity
+                        //the JSON string is passed via the intent to the new activity
+                        //as well as the ID of the button so you can tell which button was pressed
+                        button.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View view) {
+                                Intent intent = new Intent(view.getContext(), ArticleViewer.class);
+                                intent.putExtra("JSON", jsonstring);
+                                intent.putExtra("ID", view.getId());
+                                startActivityForResult(intent, 0);
+                            }
+
+                        });
+
+                        //Load an image from it's URL and place below the button just instantiated
+                        ImageView image = (ImageView) new ImageView(this);
+                        String url_string=item.getString("image");
+                        image.setId(i);
+                        image.setBackgroundColor(Color.parseColor("#3D4547"));
+
+                        //resize the image to be a proportion of the screen
+                        Picasso.with(this).load(url_string).resize(830,height/6).centerCrop().into(image);
+                        drawer_list.addView(image);
+
+                        //set the on click listener to launch the article viewer activity
+                        //the JSON string is passed via the intent to the new activity
+                        //as well as the ID of the button so you can tell which button was pressed
+                        image.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View view) {
+                                Intent intent = new Intent(view.getContext(), ArticleViewer.class);
+                                intent.putExtra("JSON", jsonstring);
+                                intent.putExtra("ID", view.getId());
+                                startActivityForResult(intent, 0);
+                            }
+
+                        });
+                        break;
+                    }
+                }
+            }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

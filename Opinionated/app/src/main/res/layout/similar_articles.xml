@@ -9,11 +9,19 @@
     <include layout="@layout/article_scrollview"/>
 
     <!-- The similar articles nav drawer -->
-    <ScrollView android:id="@+id/similar_art_list"
+    <ScrollView
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="#111"/>
+        android:background="@color/colorPrimaryDark">
+        <LinearLayout
+            android:id="@+id/similar_art_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F5F5F5"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
 </android.support.v4.widget.DrawerLayout>
