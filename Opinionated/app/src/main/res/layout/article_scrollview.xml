@@ -31,8 +31,6 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-
     <include layout="@layout/content_article_viewer" />
-
 
 </android.support.design.widget.CoordinatorLayout>
