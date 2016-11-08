@@ -28,7 +28,7 @@ public class main_page extends AppCompatActivity {
     //This function is from a stackoverflow post found at this link "http://stackoverflow.com/questions/19945411/android-java-how-can-i-parse-a-local-json-file-from-assets-folder-into-a-listvi"
     //Function written by stackoverflow user "GrIsHu", use in accordance with Creative Commons License CC BY-SA 3.0
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try
         {
             InputStream is = getAssets().open("exArt1.json");
@@ -63,7 +63,8 @@ public class main_page extends AppCompatActivity {
         // Create a LinearLayout element
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.main_lin_layout);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        try {
+        try
+        {
             //create a JSON array from the JSON file stored in the Assets folder
             final String jsonstring = loadJSONFromAsset();
             JSONObject main_obj = new JSONObject(jsonstring);
@@ -162,9 +163,6 @@ public class main_page extends AppCompatActivity {
         load_linear_layout(tags);
     }
 
-
-
-
     //REQUIRES: menu != null
     //EFFECTS: inflates the options menu
     //MODIFIES: this
@@ -175,7 +173,6 @@ public class main_page extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main_page, menu);
         return true;
     }
-
 
     //REQUIRES: item != null
     //EFFECTS: changes the tag field based on the button pressed
@@ -189,18 +186,48 @@ public class main_page extends AppCompatActivity {
         LinearLayout lin_lay=(LinearLayout) findViewById(R.id.main_lin_layout);
         if (item.isChecked())
         {
-            item.setChecked(false);
             tags.remove(item.getTitle().toString());
+            if (tags.size()==0)
+            {
+                tags.add("All");
+            }
         }
         else
         {
-            item.setChecked(true);
-            tags.add(item.getTitle().toString());
+            if (tags.size()>=1 & tags.contains("All"))
+            {
+                tags.remove("All");
+            }
+            if (item.getTitle().toString().equals("All"))
+            {
+                tags.removeAll(tags);
+                tags.add("All");
+            }
+            else
+            {
+                tags.add(item.getTitle().toString());
+            }
         }
 
         lin_lay.removeAllViews();
         load_linear_layout(tags);
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        for (int g=0; g<menu.size(); g++)
+        {
+            MenuItem i = menu.getItem(g);
+            if (tags.contains(i.getTitle().toString()))
+            {
+                i.setChecked(true);
+                continue;
+            }
+            i.setChecked(false);
+        }
+        return true;
     }
 }
