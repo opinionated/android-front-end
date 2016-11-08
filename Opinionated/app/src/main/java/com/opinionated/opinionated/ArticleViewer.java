@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,6 +39,7 @@ public class ArticleViewer extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ListView drawer_list;
+    private LinearLayout drawer_parent;
     private ActionBarDrawerToggle drawerToggle;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -143,10 +145,21 @@ public class ArticleViewer extends AppCompatActivity {
             main_layout.addView(art_img);
             main_layout.addView(article_text2);
 
+            TextView Spacer = new TextView(this);
+            Spacer.setHeight(85);
+            Spacer.setBackgroundColor(Color.parseColor("#3D4547"));
+            drawer_list.addView(Spacer);
             TextView t = new TextView(this);
             Typeface orb = Typeface.createFromAsset(getAssets(), "fonts/Orbitron-Medium.ttf");
             t.setTypeface(orb);
+            t.setHeight(100);
+            t.setTextSize(24);
+            t.setTextColor(Color.parseColor("#f5f5f5"));
             t.setText("Similar Articles");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            }
+            t.setBackgroundColor(Color.parseColor("#23cf5f"));
             //loads the similar articles into the nav drawer
             drawer_list.addView(t);
 

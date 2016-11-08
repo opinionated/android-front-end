@@ -19,15 +19,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.squareup.picasso.Picasso;
+import java.util.HashSet;
 
 public class main_page extends AppCompatActivity {
 
-    String tag = "all";
+    HashSet<String> tags = new HashSet<String>();
     //function to read JSON from assets folder
     //This function is from a stackoverflow post found at this link "http://stackoverflow.com/questions/19945411/android-java-how-can-i-parse-a-local-json-file-from-assets-folder-into-a-listvi"
     //Function written by stackoverflow user "GrIsHu", use in accordance with Creative Commons License CC BY-SA 3.0
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try
         {
             InputStream is = getAssets().open("exArt1.json");
@@ -57,12 +58,13 @@ public class main_page extends AppCompatActivity {
     //THROWS: Stacktrace if JSON can't be loaded
 
     //function to build the linear_layout inside the scrollview
-    public void load_linear_layout(String tag)
+    public void load_linear_layout(HashSet<String> tags)
     {
         // Create a LinearLayout element
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.main_lin_layout);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        try {
+        try
+        {
             //create a JSON array from the JSON file stored in the Assets folder
             final String jsonstring = loadJSONFromAsset();
             JSONObject main_obj = new JSONObject(jsonstring);
@@ -77,10 +79,10 @@ public class main_page extends AppCompatActivity {
                 JSONArray art_tags=article.getJSONArray("tag");
                 for (int i=0; i<art_tags.length(); i+=1)
                 {
-                    //if the article has a tag that matches the tag variable or if the tag variable
-                    //is set to all, then display the article
+                    //if the article has a tag that is in the tags set or if the tags
+                    //set contains the all tag, then display the article
                     curr_tag=art_tags.getString(i);
-                    if (curr_tag.equals(tag) || tag.equals("all"))
+                    if (tags.contains(curr_tag) || tags.contains("All"))
                     {
                         //create a linearlayout for the article
                         final LinearLayout art_layout = (LinearLayout)(this.getLayoutInflater().inflate(R.layout.article_layout, null));
@@ -157,11 +159,9 @@ public class main_page extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("");
-        load_linear_layout("all");
+        tags.add("All");
+        load_linear_layout(tags);
     }
-
-
-
 
     //REQUIRES: menu != null
     //EFFECTS: inflates the options menu
@@ -174,7 +174,6 @@ public class main_page extends AppCompatActivity {
         return true;
     }
 
-
     //REQUIRES: item != null
     //EFFECTS: changes the tag field based on the button pressed
     //MODIFIES: none
@@ -184,81 +183,51 @@ public class main_page extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
         LinearLayout lin_lay=(LinearLayout) findViewById(R.id.main_lin_layout);
-
-        //the options below change the tag field based
-        // on which button from the menu was selected
-        if (id == R.id.All) {
-            tag="all";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
-
-        else if (id==R.id.Business)
+        if (item.isChecked())
         {
-            tag="Business";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
+            tags.remove(item.getTitle().toString());
+            if (tags.size()==0)
+            {
+                tags.add("All");
+            }
+        }
+        else
+        {
+            if (tags.size()>=1 & tags.contains("All"))
+            {
+                tags.remove("All");
+            }
+            if (item.getTitle().toString().equals("All"))
+            {
+                tags.removeAll(tags);
+                tags.add("All");
+            }
+            else
+            {
+                tags.add(item.getTitle().toString());
+            }
         }
 
-        else if (id==R.id.Entertainment)
-        {
-            tag="Entertainment";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
+        lin_lay.removeAllViews();
+        load_linear_layout(tags);
 
-        else if (id==R.id.News)
-        {
-            tag="News";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
-
-        else if (id==R.id.Politics)
-        {
-            tag="Politics";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
-
-        else if (id==R.id.Technology)
-        {
-            tag="Technology";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
-
-        else if (id==R.id.Entertainment)
-        {
-            tag="Entertainment";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
-
-        else if (id==R.id.Sports)
-        {
-            tag="Sports";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
-
-        else if (id==R.id.Opinion)
-        {
-            tag="Opinion";
-            lin_lay.removeAllViews();
-            load_linear_layout(tag);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        for (int g=0; g<menu.size(); g++)
+        {
+            MenuItem i = menu.getItem(g);
+            if (tags.contains(i.getTitle().toString()))
+            {
+                i.setChecked(true);
+                continue;
+            }
+            i.setChecked(false);
+        }
+        return true;
     }
 }
