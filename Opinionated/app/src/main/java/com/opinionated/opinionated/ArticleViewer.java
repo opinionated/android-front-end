@@ -30,6 +30,9 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
 
+/**
+ * @author      Matthew Mawby
+ */
 public class ArticleViewer extends AppCompatActivity {
     private LinearLayout main_layout;
     private Toolbar toolbar;
@@ -45,7 +48,13 @@ public class ArticleViewer extends AppCompatActivity {
     //REQUIRES: savedInstanceState != null
     //EFFECTS: inflates the new view
     //MODIFIES: none
-    //RETURNS: none
+
+    /**
+     * Determines specific layout of overall app view
+     *
+     * @param savedInstanceState previously saved instance used to restore views
+     * @return      Returns none
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
