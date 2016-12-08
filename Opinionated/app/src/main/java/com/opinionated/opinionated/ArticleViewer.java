@@ -24,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.Toast;
+
 import java.lang.Double;
 
 import com.google.android.gms.appindexing.Action;
@@ -41,6 +43,7 @@ public class ArticleViewer extends AppCompatActivity {
     private ListView drawer_list;
     private LinearLayout drawer_parent;
     private ActionBarDrawerToggle drawerToggle;
+    private boolean zoomOut = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -66,6 +69,7 @@ public class ArticleViewer extends AppCompatActivity {
         main_layout = (LinearLayout) findViewById(R.id.articleviewer_linearlayout);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         LinearLayout drawer_list = (LinearLayout) findViewById(R.id.similar_art_list);
+        ImageView art_image = new ImageView(this);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.app_name, R.string.app_name) {
@@ -82,7 +86,6 @@ public class ArticleViewer extends AppCompatActivity {
         };
         drawer.addDrawerListener(drawerToggle);
         setSupportActionBar(toolbar);
-
 
         //get the json string and the id of the pressed button
         final String jsonstring = getIntent().getStringExtra("JSON");
@@ -120,14 +123,26 @@ public class ArticleViewer extends AppCompatActivity {
             int height = size.y;
 
             //adds the image to the screen with a border around it
-            String img_url = article.getString("image");
-            ImageView art_img = new ImageView(this);
+            final String img_url = article.getString("image");
+            //ImageView art_img = new ImageView(this);
             LayoutParams layout_params = new LayoutParams(width - 60, height / 3);
             layout_params.gravity = Gravity.CENTER;
-            art_img.setLayoutParams(layout_params);
-            art_img.setBackgroundColor(Color.parseColor("#3D4547"));
-            art_img.setPadding(6, 6, 6, 6);
-            Picasso.with(this).load(img_url).resize(width - 60, height / 3).centerCrop().into(art_img);
+            art_image.setLayoutParams(layout_params);
+            art_image.setBackgroundColor(Color.parseColor("#3D4547"));
+            art_image.setPadding(6, 6, 6, 6);
+            Picasso.with(this).load(img_url).resize(width - 60, height / 3).centerCrop().into(art_image);
+
+            //set the on click listener to launch the article viewer activity
+            //the JSON string is passed via the intent to the new activity
+            //as well as the ID of the button so you can tell which button was pressed
+            art_image.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), artImageFullscreen.class);
+                    intent.putExtra("URL", img_url);
+                    startActivityForResult(intent, 0);
+                }
+
+            });
 
 
             //add text to the TextViews and set the font color to off-black and sets the font size of the two textviews
@@ -142,7 +157,7 @@ public class ArticleViewer extends AppCompatActivity {
 
             //Add the first TextView, then the ImageView, then finally the second TextView
             main_layout.addView(article_text1);
-            main_layout.addView(art_img);
+            main_layout.addView(art_image);
             main_layout.addView(article_text2);
 
             TextView Spacer = new TextView(this);
