@@ -41,4 +41,4 @@ To run just download the code and emulate with android API 16 or later.
 ![similar_articles](images/similar_articles.png)
 
 
-#If you have any questions, comments, contributions, or concerns feel free to submit a pull request or submit an issue.
+####If you have any questions, comments, contributions, or concerns feel free to submit a pull request or submit an issue.
